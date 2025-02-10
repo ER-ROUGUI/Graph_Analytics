@@ -9,7 +9,7 @@ To achieve this, we track actions such as **click events, session frequency, and
 ---
 
 ## **Data Processing**  
-**Notebook:** *data_preprocessing.ipynb* and *preprocessing__with_pyspark.ipynb*   
+**Notebooks:** *data_preprocessing.ipynb* and *preprocessing__with_pyspark.ipynb*   
 To handle the **large-scale dataset**, we performed **preprocessing** and **feature engineering**, applying techniques such as:
 - **Filtering** user sessions to focus on relevant interactions.
 - **Handling missing values** and normalizing numerical features.
