@@ -9,19 +9,68 @@ To achieve this, we track actions such as **click events, session frequency, and
 ---
 
 ## **Data Processing**  
+
 **Notebooks:** *data_preprocessing.ipynb* and *preprocessing__with_pyspark.ipynb*   
-To handle the **large-scale dataset**, we performed **preprocessing** and **feature engineering**, applying techniques such as:
-- **Filtering** user sessions to focus on relevant interactions.
-- **Handling missing values** and normalizing numerical features.
-- **Encoding categorical features** (e.g., course type, actions).
-- **Session-based aggregation** to extract meaningful user behavior insights.
 
-Due to **memory constraints**, we leveraged **Apache Spark** to process the data efficiently, enabling **scalability** for handling large datasets.  
+The raw dataset contains multiple attributes, some of which are irrelevant to our study. Since our primary goal is **anomaly detection in user behavior**, we **excluded** attributes such as user demographic details (**gender, birth year, education**) since they are more relevant for tasks like **community detection** or **course recommendations**, rather than fraud detection. Additionally, we did not use **dropout labels** since our objective is **not dropout prediction**.
 
-After preprocessing, we extracted the **top 2% most active users** from the dataset, generating `top_02percent_most_sessions.csv`, which serves as the primary dataset for our experiments.
+### **Preprocessing Steps**
+To ensure data consistency and reliability, we applied the following preprocessing steps:
+
+1. **Data Cleaning**:  
+   - Removed unnecessary attributes.
+   - Handled missing values.
+   - Ensured session-based interactions remained **intact**.
+
+2. **Feature Selection**:  
+   - Retained only **essential attributes** related to user activity, session behaviors, and course interactions, aligning with our **graph-based modeling**.
+
+3. **Dataset Integration**:  
+   - Merged multiple datasets (**Dropout Prediction, User Profile, and Course Information**) into a single dataset that accurately represents meaningful **learning interactions**.
 
 ---
 
+### **Feature Engineering & Featurization**  
+
+To analyze **user behavior dynamics**, we engineered additional **engagement-based** features:
+
+- **`session_duration`**: Total time a user spends within a session, measuring **engagement**.  
+- **`session_gap`**: Time difference between **consecutive sessions**, analyzing **learning continuity**.  
+- **`action_count`**: Number of interactions per session, representing **session intensity**.  
+- **`action_frequency`**: Rate of user interactions per second, helping to **detect engagement variations**.  
+
+These additional features help us track **behavioral anomalies** such as:  
+- **Unusual session lengths** (e.g., a session lasting **hours** could indicate **automated activity**).  
+- **Sudden drops in engagement** (e.g., long session gaps **without interactions**).  
+- **Unrealistically high action frequencies**, which may suggest **bot-like behavior**.
+
+The final **preprocessed dataset** contains the following attributes:
+
+| **Attribute**        | **Description**  |
+|----------------------|----------------|
+| `username`          | Unique identifier for each user. |
+| `enroll_id`        | Unique enrollment ID per user-course pair. |
+| `session_id`        | Unique identifier for each session. |
+| `course_id`         | Unique course identifier. |
+| `action`            | Type of action performed (e.g., play video, seek video, click info, submit assignment). |
+| `time`              | Timestamp of the action. |
+| `category`          | Course category (e.g., Science, Business, Engineering). |
+| `session_duration`  | Total time spent in a session. |
+| `session_gap`       | Time difference between consecutive sessions of a user. |
+| `action_count`      | Total number of actions performed in a session. |
+| `action_frequency`  | Number of actions performed per second in a session. |
+
+---
+
+### **Dataset Reduction & Optimization**  
+
+Due to the **large size of the dataset**, we faced **memory constraints**. To address this:
+- We used **Apache Spark** and **Pyspark** to process and optimize the dataset efficiently.
+- We **selected the top 2% most active users**, leading to the `top_02percent_most_sessions.csv` dataset.
+
+This **optimized dataset** forms the **foundation** for our **graph-based modeling**.
+
+---
 ## **Graph-Based Approaches**  
 
 ### **1. Session-Based Graph Modeling**  
