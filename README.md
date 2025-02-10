@@ -9,6 +9,7 @@ To achieve this, we track actions such as **click events, session frequency, and
 ---
 
 ## **Data Processing**  
+**Notebook:** *preprocessing_spark.ipynb*   and data_processing.ipynb
 To handle the **large-scale dataset**, we performed **preprocessing** and **feature engineering**, applying techniques such as:
 - **Filtering** user sessions to focus on relevant interactions.
 - **Handling missing values** and normalizing numerical features.
@@ -25,7 +26,7 @@ After preprocessing, we extracted the **top 2% most active users** from the data
 
 ### **1. Session-Based Graph Modeling**  
 
-**Notebook:** *Graph_construction_and_modeling_train.ipynb*
+**Notebook:** *Graph_construction_and_modeling_training.ipynb*
 
 IN this approach  **each user session as a graph**, where:  
 
@@ -70,7 +71,7 @@ This method is particularly effective in **detecting irregular usage patterns**,
 
 ### **Session-Based Modeling**
 - Successfully **differentiated legitimate and suspicious sessions**.  
-- Achieved promising results in **user authentication based on behavioral similarities**.
+
 
 ### **User-Based Autoencoder**
 - Demonstrated effectiveness in **fraud detection** by identifying **unexpected user behavior**.
@@ -100,8 +101,11 @@ Below is the **MSE loss curve** over the training epochs:
 ---
 
 ## **Conclusion**  
+
 This project highlights the potential of **Graph Neural Networks (GNNs) and Autoencoders** in **user behavior analysis** and **fraud detection** on MOOCs platforms. By **modeling interactions as graphs**, we effectively identify **deviations from normal activity**, making these techniques **valuable tools for security and authentication** in **online learning platforms**.
 
 ---
 
-Let me know if you need further modifications! 
+## **Ongoing Research: User & Host Behavior Analysis in Cybersecurity**  
+
+Our work extends beyond MOOCs fraud detection. We are currently working on a **larger project focused on user and host behavior analysis in cybersecurity**. This research aims to detect **anomalous activities in networks**, identify **potential threats**, and enhance **security mechanisms** using **graph-based AI models**.  
