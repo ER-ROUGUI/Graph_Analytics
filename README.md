@@ -130,16 +130,7 @@ This method is particularly effective in **detecting irregular usage patterns**,
 
 ## **Loss Function - Mean Squared Error (MSE)** 
 
-The **reconstruction error** is computed using the **Mean Squared Error (MSE) loss function**, which is defined as:
-
-$$
-\mathcal{L}_{MSE} = \frac{1}{N} \sum_{i=1}^{N} (X_i - X'_i)^2
-$$
-
-where:  
-- \( X_i \) is the original feature of node \( i \).  
-- \( X'_i \) is the reconstructed feature of node \( i \).  
-- \( N \) is the total number of nodes in the graph.  
+The **reconstruction error** is computed using the **Mean Squared Error (MSE) loss function**
 
 The lower the MSE loss, the better the autoencoder has learned the user behavior. A **higher reconstruction error** suggests an **anomalous behavior**, indicating a potential fraudulent activity.
 
