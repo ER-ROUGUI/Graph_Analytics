@@ -128,12 +128,13 @@ This method is particularly effective in **detecting irregular usage patterns**,
 
 ---
 
-## **Loss Function - Mean Squared Error (MSE)**  
+## **Loss Function - Mean Squared Error (MSE)** 
+
 The **reconstruction error** is computed using the **Mean Squared Error (MSE) loss function**, which is defined as:
 
-\[
+$$
 \mathcal{L}_{MSE} = \frac{1}{N} \sum_{i=1}^{N} (X_i - X'_i)^2
-\]
+$$
 
 where:  
 - \( X_i \) is the original feature of node \( i \).  
